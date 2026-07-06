@@ -3,16 +3,16 @@ struct User {
     male: bool,
     age: i32,
 }
-static mut AUTH: bool = false;
+static mut auth: bool = false;
 impl User {
     fn authenticate(&self) -> bool {
         unsafe {
-            AUTH = true;
-            return AUTH;
+            auth = true;
+            return auth;
         }
     }
     fn is_authenticated() -> bool {
-        unsafe { AUTH }
+        unsafe { auth }
     }
 }
 fn main() {
