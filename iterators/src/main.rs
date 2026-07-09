@@ -25,17 +25,30 @@ fn main() {
     // for block ends val got deallocated as well and vec already become invalidate so we lose both at this line
     // That's why compiler saying to pass ref to sustain vec if you want to use it in future.
     //print!("{:?}", vec) //->Error
-    iterator()
+    // iterator()
+    into_iterator()
 }
 
 // iterator borrows the values from the collection that's why we were doing derefrencing
 
-fn iterator() {
+// fn iterator() {
+//     let vec = vec![1, 2, 3, 4, 5];
+//     // when using .next() it needs &mut self
+//     let mut new_vec = vec.iter();
+//     // next will returns an Option
+//     while let Some(val) = new_vec.next() {
+//         print!("{:?}", Some(val))
+//     }
+// }
+
+// Normal for loop is by default into_iter() it transfers the ownership
+fn into_iterator() {
     let vec = vec![1, 2, 3, 4, 5];
-    // when using .next() it needs &mut self
-    let mut new_vec = vec.iter();
-    // next will returns an Option
-    while let Some(val) = new_vec.next() {
-        print!("{:?}", Some(val))
+    for val in vec.into_iter() {
+        print!("{}", val);
     }
 }
+
+// iter() -> iterate with ref
+// iter_mut() -> with mut ref
+// into_iter() -> transfer ownership to squeeze the mem if var is no longer in the use
