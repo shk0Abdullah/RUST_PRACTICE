@@ -6,7 +6,8 @@ fn consuming_adaptor_iterator() {
 }
 fn main() {
     // consuming_adaptor_iterator();
-    iterator_adaptor();
+    // iterator_adaptor();
+    assignment();
 }
 // they don't consume the iterator they return another iterator
 fn iterator_adaptor() {
@@ -22,4 +23,15 @@ fn iterator_adaptor() {
     println!("{:?}", filtered_vec);
 
     print!("{:?}", mapped_new_vec);
+}
+
+// Assignment
+// filter odd then double it before returning
+fn assignment() {
+    let old_vec = vec![1, 2, 3, 4, 5];
+    let vec = old_vec.iter();
+    let filtered_vec: Vec<_> = vec.filter(|x| *x % 2 != 0).collect();
+    let mapped_double_vec: Vec<_> = filtered_vec.iter().map(|x| *x * 2).collect();
+
+    print!("{:?}", mapped_double_vec);
 }
